@@ -1,0 +1,22 @@
+{
+    "$schema": "http://json.schemastore.org/tsconfig",
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "target": "ESNext",
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "emitDeclarationOnly": true,
+        "allowImportingTsExtensions": true,
+        "lib": [ "esnext", "dom" ]
+    },
+    "exclude": [
+        "test",
+        "dist"
+    ],
+    "references": [
+    ]
+}

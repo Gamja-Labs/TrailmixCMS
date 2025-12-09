@@ -1,0 +1,1 @@
+export const ObjectIdRegex = /^[0-9a-f]{24}$/; //https://github.com/mkg20001/joi-objectid/blob/8411c1199b1a4807a1a9aa570a9b5a86dae6ce20/index.js#L12

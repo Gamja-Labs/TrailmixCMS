@@ -1,0 +1,19 @@
+{
+    "packages": [
+        {
+            "path": "./packages/cms"
+        },
+        {
+            "path": "./packages/db"
+        },
+        {
+            "path": "./packages/models"
+        },
+        {
+            "path": "./packages/utils"
+        },
+        {
+            "path": "./packages/vue"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "@trailmix-cms/models",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b -v",
+    "clean": "tsc -b --clean",
+    "trace": "tsc --traceResolution"
+  },
+  "dependencies": {
+    "bson": "^7.0.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

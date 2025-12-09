@@ -1,0 +1,36 @@
+{
+  "name": "@trailmix-cms/db",
+  "version": "0.0.1",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b -v",
+    "clean": "tsc -b --clean",
+    "trace": "tsc --traceResolution"
+  },
+  "dependencies": {
+    "@nestjs/common": "^11.1.9",
+    "@nestjs/config": "^4.0.2",
+    "@trailmix-cms/models": "workspace:*",
+    "envalid": "^8.1.1",
+    "lodash.merge": "^4.6.2",
+    "mongodb": "^7.0.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "^4.6.9",
+    "@types/node": "^24.10.1",
+    "typescript": "5.9.3"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^11.1.9",
+    "@nestjs/config": "^4.0.2",
+    "@trailmix-cms/models": "workspace:*",
+    "mongodb": "^7.0.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "zod": "^4.1.12"
+  }
+}
