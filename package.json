@@ -1,19 +1,19 @@
 {
-    "name": "trailmixcms",
-    "version": "0.0.1",
-    "private": true,
-    "packageManager": "yarn@4.9.2",
-    "scripts": {
-        "build": "yarn workspaces foreach --topological --all --exclude cms-api --exclude simple-todo-api run build"
-    },
-    "workspaces": [
-        "packages/*",
-        "examples/*"
-    ],
-    "dependencies": {
-        "typescript": "5.9.3"
-    },
-    "devDependencies": {
-        "@yarnpkg/types": "^4.0.1"
-    }
+  "name": "trailmixcms",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "yarn@4.9.2",
+  "scripts": {
+    "build": "yarn workspaces foreach --topological --all --exclude cms-api --exclude simple-todo-api run build"
+  },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "dependencies": {
+    "typescript": "5.9.3"
+  },
+  "devDependencies": {
+    "@yarnpkg/types": "^4.0.1"
+  }
 }
