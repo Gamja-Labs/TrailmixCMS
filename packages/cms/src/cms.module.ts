@@ -7,7 +7,6 @@ import { DatabaseModule, Utils } from '@trailmix-cms/db';
 import { configuration } from './config';
 import { configureCollections, createCmsProviders } from './cms.providers';
 import { buildAccountController } from './controllers/account.controller';
-import { AccountService } from './services/account.service';
 
 @Module({
     imports: [
@@ -15,9 +14,6 @@ import { AccountService } from './services/account.service';
             load: [configuration],
         }),
         DatabaseModule
-    ],
-    providers: [
-        AccountService,
     ],
     exports: []
 })

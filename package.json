@@ -2,9 +2,10 @@
   "name": "trailmixcms",
   "version": "0.0.3",
   "private": true,
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@4.12.0",
   "scripts": {
-    "build": "yarn workspaces foreach --topological --all --exclude cms-api --exclude simple-todo-api run build"
+    "build": "yarn workspaces foreach --topological --all --exclude cms-api --exclude simple-todo-api run build",
+    "ci": "yarn build"
   },
   "workspaces": [
     "packages/*",

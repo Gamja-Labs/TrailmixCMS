@@ -8,6 +8,7 @@ import { CollectionConfig } from './types/collection-config';
 
 import { Collection } from 'mongodb';
 import { AccountCollection, FileCollection, TextCollection } from './collections';
+import { AccountService } from './services/account.service';
 
 export function configureCollections(options?: {
     features?: {
@@ -64,6 +65,9 @@ export function createCmsProviders<
         disableDefaultIndexes: false
     }
     return [
+        // Services
+        AccountService,
+        // Collections
         ...mongodbCollectionProviders,
         // Account
         {
