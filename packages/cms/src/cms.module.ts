@@ -10,7 +10,7 @@ import { buildAccountController } from './controllers/account.controller';
 import { AuditController } from './controllers/audit.controller';
 
 export type CmsModuleOptions = {
-    disableAuditController: boolean;
+    disableAuditController?: boolean;
 }
 
 @Module({
