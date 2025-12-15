@@ -7,6 +7,11 @@ import { DatabaseModule, Utils } from '@trailmix-cms/db';
 import { configuration } from './config';
 import { configureCollections, createCmsProviders } from './cms.providers';
 import { buildAccountController } from './controllers/account.controller';
+import { AuditController } from './controllers/audit.controller';
+
+export type CmsModuleOptions = {
+    disableAuditController: boolean;
+}
 
 @Module({
     imports: [
@@ -23,13 +28,14 @@ export class CmsModule {
         AccountDtoEntity = AccountEntity,
         FileEntity extends models.File.Entity = models.File.Entity,
         TextEntity extends models.Text.Entity = models.Text.Entity
-    >(options?: Parameters<typeof createCmsProviders<AccountEntity, AccountDtoEntity, FileEntity, TextEntity>>[0]): Promise<DynamicModule> {
+    >(options?: CmsModuleOptions & Parameters<typeof createCmsProviders<AccountEntity, AccountDtoEntity, FileEntity, TextEntity>>[0]): Promise<DynamicModule> {
         const providers = createCmsProviders<AccountEntity, AccountDtoEntity, FileEntity, TextEntity>(options);
         const { collectionNames, collections } = configureCollections(options);
         return {
             module: CmsModule,
             providers,
             controllers: [
+                ...(!options?.disableAuditController ? [AuditController] : []),
                 buildAccountController<AccountEntity, AccountDtoEntity>(options?.entities?.accountDto),
             ],
             exports: [

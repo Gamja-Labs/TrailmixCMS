@@ -5,11 +5,19 @@
         "rootDir": "./src",
         "outDir": "./dist"
     },
+    "include": [
+        "src/**/*"
+    ],
     "exclude": [
         "test",
-        "dist"
+        "./dist"
     ],
     "references": [
-        { "path": "../models" }
+        {
+            "path": "../models"
+        },
+        {
+            "path": "../db"
+        }
     ]
 }
