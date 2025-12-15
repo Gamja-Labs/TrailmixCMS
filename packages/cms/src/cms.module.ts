@@ -35,7 +35,7 @@ export class CmsModule {
             module: CmsModule,
             providers,
             controllers: [
-                ...(!options?.disableAuditController ? [AuditController] : []),
+                ...(options && options.disableAuditController ? [] : [AuditController]),
                 buildAccountController<AccountEntity, AccountDtoEntity>(options?.entities?.accountDto),
             ],
             exports: [
