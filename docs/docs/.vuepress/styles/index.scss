@@ -1,0 +1,15 @@
+// === colors ===
+:root {
+    // accent colors
+    --vp-c-accent: #58cc05;
+    --vp-c-accent-bg: #58cc05;
+    --vp-c-accent-hover: #4ab004;
+    --vp-c-accent-text: var(--vp-c-white);
+    --vp-c-accent-soft: rgb(88 204 5 / 14%);
+
+    // font vars
+    --font-family: "Instrument Sans", sans-serif;
+    --code-font-family: "B612 Mono", monospace;
+
+    --code-c-bg: #0c0c0d;
+}

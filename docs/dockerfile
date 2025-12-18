@@ -1,0 +1,54 @@
+# Build stage
+FROM node:24.11.1-trixie-slim AS builder
+
+# Enable Yarn
+RUN corepack enable && corepack prepare yarn@4.12.0 --activate
+
+WORKDIR /app
+
+# Copy package files
+COPY docs/package.json docs/.yarnrc.yml docs/yarn.lock ./docs/
+
+# Install dependencies
+RUN cd docs && yarn install --immutable
+
+# Copy source code
+COPY . .
+
+# Build arguments
+ARG VITE_BUILD_ID
+
+# Set build arguments as environment variables for the build
+ENV VITE_BUILD_ID=${VITE_BUILD_ID}
+
+# Build the application
+RUN cd docs && yarn docs:build
+
+# Deploy stage - Use Node image with Wrangler
+FROM node:24.11.1-trixie-slim AS deploy
+
+# Install Wrangler CLI globally
+RUN npm install -g wrangler@latest
+
+WORKDIR /app
+
+# Copy built application from builder stage
+COPY --from=builder /app/docs/docs/.vuepress/dist ./dist
+
+# Build arguments for deployment
+ARG CLOUDFLARE_API_TOKEN
+ARG CLOUDFLARE_ACCOUNT_ID
+ARG CLOUDFLARE_PROJECT_NAME
+
+# Set environment variables for Wrangler
+ENV CLOUDFLARE_API_TOKEN=${CLOUDFLARE_API_TOKEN}
+ENV CLOUDFLARE_ACCOUNT_ID=${CLOUDFLARE_ACCOUNT_ID}
+ENV CLOUDFLARE_PROJECT_NAME=${CLOUDFLARE_PROJECT_NAME}
+
+# Deploy to Cloudflare Pages using Wrangler
+# Note: Wrangler reads CLOUDFLARE_API_TOKEN from environment automatically
+RUN wrangler pages deploy dist \
+    --project-name="${CLOUDFLARE_PROJECT_NAME}"
+
+CMD []
+

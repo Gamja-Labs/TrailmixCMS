@@ -1,0 +1,11 @@
+# Dependency directory
+**/node_modules/
+
+# Yarn
+.pnp.*
+
+# Build output
+**/dist/
+**/tsconfig.tsbuildinfo
+
+.env*

@@ -1,0 +1,11 @@
+name: trailmixcms-docs
+runtime:
+  name: nodejs
+  options:
+    packagemanager: yarn
+    nodeargs: --max-old-space-size=8192
+description: TrailmixCMS Docs
+config:
+  pulumi:tags:
+    value:
+      pulumi:trailmixcms-docs: typescript

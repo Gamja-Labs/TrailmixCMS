@@ -4,18 +4,18 @@ import { DocumentCollection, DatabaseService, Collections, AuditedCollection } f
 import { TodoItem } from '../models';
 import { CollectionName } from '../constants';
 
-type Record = TodoItem.Entity
+type Entity = TodoItem.Entity
 const collectionName = CollectionName.TodoItem;
 
 @Injectable()
-export class TodoItemCollection extends AuditedCollection<Record> implements OnModuleInit {
+export class TodoItemCollection extends AuditedCollection<Entity> implements OnModuleInit {
     private readonly logger = new Logger(this.constructor.name);
     public readonly collectionName = collectionName;
     public readonly entitySchema = TodoItem.entitySchema;
 
     constructor(
         @DocumentCollection(collectionName)
-        protected readonly collection: Collection<Record>,
+        protected readonly collection: Collection<Entity>,
         protected readonly databaseService: DatabaseService,
         protected readonly auditCollection: Collections.AuditCollection
     ) {

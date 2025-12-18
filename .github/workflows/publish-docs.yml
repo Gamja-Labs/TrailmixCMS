@@ -1,0 +1,30 @@
+name: Publish Docs
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  publish:
+    name: Publish Docs Site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24.x
+          cache: yarn
+      - run: corepack enable
+
+      - name: 📦 Install dependencies
+        working-directory: ./docs
+        run: yarn install --immutable
+
+      - name: 🔄 Pulumi Up
+        uses: pulumi/actions@v6
+        with:
+          stack-name: prod
+          command: up
+          work-dir: ./iac
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
