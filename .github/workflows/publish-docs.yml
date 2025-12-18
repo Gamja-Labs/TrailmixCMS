@@ -22,7 +22,7 @@ jobs:
           cache: yarn
 
       - name: 📦 Install dependencies
-        working-directory: ./docs
+        working-directory: ./iac
         run: yarn install --immutable
 
       - name: 🔄 Pulumi Up
