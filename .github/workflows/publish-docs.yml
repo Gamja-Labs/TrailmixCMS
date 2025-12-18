@@ -9,12 +9,17 @@ jobs:
     name: Publish Docs Site
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
+      - name: 🏗 Setup repo
+        uses: actions/checkout@v5
+
+      - name: 📦 Enable Corepack
+        run: corepack enable
+
+      - name: 🏗 Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 24.x
           cache: yarn
-      - run: corepack enable
 
       - name: 📦 Install dependencies
         working-directory: ./docs
