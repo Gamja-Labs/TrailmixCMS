@@ -27,6 +27,7 @@ export default defineUserConfig({
                     '/database-models',
                     '/database-collections',
                     '/controllers',
+                    '/client-library-generation',
                 ],
             },
         ],
@@ -49,6 +50,7 @@ export default defineUserConfig({
                     '/controllers',
                 ],
             },
+            '/client-library-generation',
         ],
 
         head: [
