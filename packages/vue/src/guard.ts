@@ -4,12 +4,18 @@ import { waitForClerkJsLoaded } from './clerk.js';
 
 export function buildAuthenticatedGuard(options: {
     unauthenticatedRoute: RouteLocationRaw;
+    allowAnonymous: boolean;
 }) {
-    const authenticatedGuard: NavigationGuard = async (to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, next: NavigationGuardNext) => {
+    const guard: NavigationGuard = async (to: RouteLocationNormalized, from: RouteLocationNormalizedLoaded, next: NavigationGuardNext) => {
         const { user, isLoaded } = useUser();
         if (!isLoaded.value) {
             console.log('Waiting for Clerk JS to load');
             await waitForClerkJsLoaded(isLoaded);
+        }
+
+        if (options.allowAnonymous) {
+            next();
+            return;
         }
 
         // If not signed in, redirect to sign in
@@ -20,5 +26,5 @@ export function buildAuthenticatedGuard(options: {
 
         next();
     }
-    return authenticatedGuard;
+    return guard;
 }
