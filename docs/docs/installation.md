@@ -33,9 +33,3 @@ yarn add @trailmix-cms/vue
 ## Next Steps
 
 After installation, proceed to the [Configuration](./configuration.md) guide to configure Trailmix CMS for your project.
-
-
-
-
-
-

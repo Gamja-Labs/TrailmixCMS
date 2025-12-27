@@ -11,6 +11,8 @@
         "start:dev": "nest start --watch",
         "start:debug": "nest start --debug --watch",
         "start:prod": "node dist/main",
+        "generate-spec": "GENERATE_SPEC=true nest start",
+        "generate-client": "swagger-typescript-api generate --path ./dist/docs/api-json.json --output ../cms-web/src/client",
         "test": "jest",
         "test:watch": "jest --watch",
         "test:cov": "jest --coverage",
@@ -37,6 +39,7 @@
         "nestjs-zod": "^5.0.1",
         "reflect-metadata": "^0.2.2",
         "rxjs": "^7.8.1",
+        "swagger-typescript-api": "^13.2.16",
         "zod": "^4.1.12"
     },
     "devDependencies": {

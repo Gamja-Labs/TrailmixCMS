@@ -1,5 +1,5 @@
 import { Reflector } from '@nestjs/core';
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException, Logger, ForbiddenException, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, UnauthorizedException, Logger, ForbiddenException, InternalServerErrorException, Inject } from '@nestjs/common';
 import { FastifyRequest } from 'fastify';
 import { getAuth, createClerkClient, ClerkClient } from '@clerk/fastify';
 import { Account, Role } from '@trailmix-cms/models';
@@ -9,6 +9,7 @@ import { ConfigService } from '@nestjs/config';
 import { AppConfig } from './config';
 import { ALLOW_ANONYMOUS_KEY, ROLES_KEY } from './decorators/auth.decorator';
 import { AccountService } from './services/account.service';
+import { PROVIDER_SYMBOLS } from './constants';
 
 declare module 'fastify' {
     interface FastifyRequest {
@@ -26,6 +27,7 @@ export class AuthGuard implements CanActivate {
         private accountCollection: AccountCollection,
         private accountService: AccountService,
         private configService: ConfigService<AppConfig>,
+        @Inject(PROVIDER_SYMBOLS.TRAILMIXCMS_CMS_AUTH_GUARD_HOOK) private authGuardHook: (account: Account.Entity) => Promise<boolean>,
     ) {
         this.clerkClient = createClerkClient({
             secretKey: this.configService.get('CLERK_SECRET_KEY'),
@@ -105,6 +107,12 @@ export class AuthGuard implements CanActivate {
         }
 
         const account = await this.accountService.upsertAccount(auth.userId);
+
+        const authGuardHookresult = await this.authGuardHook(account!);
+
+        if (!authGuardHookresult) {
+            throw new InternalServerErrorException('Failed to validate account using auth guard hook');
+        }
 
         // TODO: Cache user
         // await this.userCache.cacheUser(auth.userId, {

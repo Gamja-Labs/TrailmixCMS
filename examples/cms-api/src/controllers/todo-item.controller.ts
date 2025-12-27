@@ -12,7 +12,9 @@ import { TodoItemByIdPipe } from '../pipes';
 import { TodoItem } from '../models';
 import { TodoItemCollection, TodoListCollection } from '../collections';
 import { AuditContext } from '@trailmix-cms/models';
+import { Auth } from '@trailmix-cms/cms';
 
+@Auth()
 @ApiTags('todo-items')
 @Controller('todo-items')
 export class TodoItemController {

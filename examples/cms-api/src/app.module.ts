@@ -41,6 +41,12 @@ import * as AccountDto from './dto/account.dto';
                     return dto;
                 },
             },
+            authGuardHook: async (account: models.Account.Entity) => {
+                console.log('Auth Guard Hook', account);
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                console.log('Auth Guard Hook resolved');
+                return true;
+            },
         }),
         // CacheModule,
     ],

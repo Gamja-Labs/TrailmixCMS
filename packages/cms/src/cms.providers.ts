@@ -50,6 +50,7 @@ export function createCmsProviders<
         textSetup?: (collection: Collection<TextEntity>) => Promise<void>,
         textConfig?: CollectionConfig,
     },
+    authGuardHook?: (account: AccountEntity) => Promise<boolean>,
     features?: {
         file?: boolean,
         text?: boolean,
@@ -65,6 +66,11 @@ export function createCmsProviders<
         disableDefaultIndexes: false
     }
     return [
+        // Auth Guard Hook
+        {
+            provide: PROVIDER_SYMBOLS.TRAILMIXCMS_CMS_AUTH_GUARD_HOOK,
+            useValue: options?.authGuardHook ?? (async (account: AccountEntity) => { return true; })
+        },
         // Services
         AccountService,
         // Collections

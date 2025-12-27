@@ -27,6 +27,7 @@ export default defineUserConfig({
                     '/database-models',
                     '/database-collections',
                     '/controllers',
+                    '/cms-features',
                     '/client-library-generation',
                 ],
             },
@@ -48,6 +49,7 @@ export default defineUserConfig({
                 text: 'CMS',
                 children: [
                     '/controllers',
+                    '/cms-features',
                 ],
             },
             '/client-library-generation',
